@@ -20,7 +20,7 @@ public class GuessingGameTest {
     @Test
     public void testSimpleWinSituation(){ // test le cas ou user trouve le nbre
         int randomNum = game.getRandomNumber();
-        String message = game.guess(0); // Imagine que l'user devine (guess) le chiffre 0 | passe 0 en arg de la methode guess()
+        String message = game.guess(randomNum); // Imagine que l'user devine (guess) le random number | guess() => affiche un message si nbre trouvé ou pas
         Assertions.assertEquals("Vous avez trouvé le bon chiffre", message); // Test si la methode guess() return bien "Vous avez trouvé le bon chiffre"
     }
 
@@ -40,13 +40,14 @@ public class GuessingGameTest {
         Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre", message); // Test si la methode guess() return bien "Vous n'avez pas trouvé le bon chiffre"
     }
 
+    //_____________________Lesson 99 - Lesson 100 Implementing Randomness**___________________________
     @Test
-    @Disabled
     public void testRandomNumberGeneration(){ // test si notre methode getRandomNumber() est vraiment efficace et génére un nbre aléatoire égalemnt distribué
         int[] rndNumCount = new int[11]; // On crée un Array avec 10 élément de type int => il met 11 au final car si non la 2em boucle for nous crée un outbound
-        for (int counter=0; counter < 100; counter++) { // on va bouclé 100 fois
-        int randomNum = game.getRandomNumber();  // sur la methode getRandomNumber() et on va stocker sa valeur dans la variable randomNumrndNumCounrndNumCount
-        rndNumCount[randomNum] = 1; // getRandomNumber() génére un nbre de 1 à 10 qui correspond à l'index de notre Array rndNumCount => qd un nbre est sorti par notre moteur de random il lui assigne la valeur 1 correspondant dans notre Array
+        for (int counter=0; counter < 50; counter++) { // on va bouclé 100 fois | ** grace à l'annotation @RepeatTest(10) à la place de @Test => ça répéte le test 10 fois pour voire si il passe à chaque fois il a pus déterminer que bouclé 50 fois suffisait pour que tous les éléments de l'arrays soit à 1
+            GuessingGame game = new GuessingGame(); //** Pour que le test passe on crée une instance que pour ce test => recrée un random nbre à chaque tour de boucle | si non on aurait eu tjrs le meme random nbre du fait qu'on l'ai mis en field dans la class GuessingGame
+            int randomNum = game.getRandomNumber();  // sur la methode getRandomNumber() et on va stocker sa valeur dans la variable randomNumrndNumCounrndNumCount
+            rndNumCount[randomNum] = 1; // getRandomNumber() génére un nbre de 1 à 10 qui correspond à l'index de notre Array rndNumCount => qd un nbre est sorti par notre moteur de random il lui assigne la valeur 1 correspondant dans notre Array
         }
         int sum = 0;
         for (int counter=0; counter < 11; counter++) { // il boucle 10 fois
