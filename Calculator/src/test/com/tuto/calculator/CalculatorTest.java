@@ -19,9 +19,9 @@ public class CalculatorTest {
 
     private Calculator calc;
 
-    @BeforeEach // Annotation va s'executé juste avant @Test
+    @BeforeEach // Annotation va s'executé juste avant chaque @Test
     void setUp() {  // clic D calc / Refactor / Introduce field / setup
-        calc = new Calculator(); // Crée une instance de la Class Calculator pour chaque test mais sur le meme field = Déférence la 1ere address pour pointer vers la 2em => Evite que cette variable stocke des valeurs (states) qui pourrait affecter le test suivant
+        calc = new Calculator(); // Crée une instance de la Class Calculator pour chaque test mais sur le meme field = Référence la 1ere address pour pointer vers la 2em => Evite que cette variable stocke des valeurs (states) qui pourrait affecter le test suivant
     }
 
     //_____________________Lesson 94 - Our first Test___________________________
