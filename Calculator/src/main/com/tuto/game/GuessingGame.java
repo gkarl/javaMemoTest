@@ -18,8 +18,17 @@ public class GuessingGame {
         } else if (counter > 4) {
             reponse = "Vous n'avez pas trouvé le bon chiffre c'est à 4em tries. Game over"; // Lesson 103
         } else {
+            String tooLowHightText = null;
+            if (guessedNumber < getRandomNumber()) { // Lesson 104 Si user essai un nbre plus petit que le nbre random à deviner
+                tooLowHightText = "- you're too low";
+            } else if (guessedNumber > getRandomNumber()) {
+                tooLowHightText = "- you're to high";
+            } else {
+                tooLowHightText = "";
+            }
+            String loseText = String.format("Vous n'avez pas trouvé le bon chiffre %s", tooLowHightText);
             // return guessedNumber >= 0 ? "Vous avez trouvé le bon chiffre" : "Vous n'avez pas trouvé le bon chiffre"; // methode simple pour que le test testOneWrongNegGuessSituation passe
-            reponse = guessedNumber == getRandomNumber() ? winningMsg : "Vous n'avez pas trouvé le bon chiffre"; // Lesson 99 ** methode simple pour que le test testOneWrongGuessSituation + testOneWrongPosGuessSituation passe | le test 1 ne passe plus car on cherche une égalité sur 2 random number => solution créer 1 field qui va contenir la génération de nobre random
+            reponse = guessedNumber == getRandomNumber() ? winningMsg : loseText.trim(); // Lesson 99 ** Ternaire si nbre deviné égale nbre random = true => return texte winningMsg si non texte loseText  methode simple pour que le test testOneWrongGuessSituation + testOneWrongPosGuessSituation passe | le test 1 ne passe plus car on cherche une égalité sur 2 random number => solution créer 1 field qui va contenir la génération de nobre random | trim()  => vire espace debut et fin d'un string
         }
         return reponse;
     }

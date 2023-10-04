@@ -30,7 +30,7 @@ public class GuessingGameTest {
     public void testOneWrongNegGuessSituation(){ // test le cas ou user donne un nbre négatif et ne trouve pas le nbre
         //GuessingGame game = new GuessingGame(); // Refactorisation
         String message = game.guess(-5); // Imagine que l'user devine (guess) le chiffre -5 => on est sur qu'il sera faut car notre moteur de random produira un chiffre entre 1 et 10
-        Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre", message); // Test si la methode guess() return bien "Vous n'avez pas trouvé le bon chiffre"
+        Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre - you're too low", message); // Test si la methode guess() return bien "Vous n'avez pas trouvé le bon chiffre" | lesson 104 ** ajoute "you're too low"
     }
 
     @Test
@@ -38,7 +38,7 @@ public class GuessingGameTest {
         //GuessingGame game = new GuessingGame(); // Refactorisation
         int randomNum = game.getRandomNumber();
         String message = game.guess(randomNum + 1); // Imagine que l'user devine (guess) presque le bon nbre  + 1
-        Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre", message); // Test si la methode guess() return bien "Vous n'avez pas trouvé le bon chiffre"
+        Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre - you're to high", message); // Test si la methode guess() return bien "Vous n'avez pas trouvé le bon chiffre"
     }
 
     //_____________________Lesson 99 - Lesson 100 Implementing Randomness**___________________________
@@ -101,5 +101,8 @@ public class GuessingGameTest {
         String message = game.guess(-3);
         Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre c'est à 4em tries. Game over", message);
     }
+
+    //_____________________Lesson 104 Wrapping up Testing___________________________
+    //Donner un indice indiquant si vous donner un nbre trop haut ou trop bas par rapport au random nbre à deviner
 
 }
