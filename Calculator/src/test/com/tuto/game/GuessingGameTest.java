@@ -64,7 +64,7 @@ public class GuessingGameTest {
         game.guess(-3);
         game.guess(-3);
         String message = game.guess(-3);
-        Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre et vous c'est votre 4em essaie. Game over", message);
+        Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre et c'est votre 4em tries. Game over", message);
     }
 
     @Test
@@ -84,6 +84,22 @@ public class GuessingGameTest {
         int correctAnswer = game.getRandomNumber();
         String message = game.guess(correctAnswer);
         Assertions.assertEquals("Vous avez trouvé le bon chiffre in 3 tries", message);
+    }
+
+    //_____________________Lesson 103 Handling More than Four Guesses___________________________
+    @Test
+    public void testTenWrongGuesses() { // test si atteind le max de 10 tentatives échouent game over
+        game.guess(-3);
+        game.guess(-3);
+        game.guess(-3);
+        game.guess(-3);
+        game.guess(-3);
+        game.guess(-3);
+        game.guess(-3);
+        game.guess(-3);
+        game.guess(-3);
+        String message = game.guess(-3);
+        Assertions.assertEquals("Vous n'avez pas trouvé le bon chiffre c'est à 4em tries. Game over", message);
     }
 
 }

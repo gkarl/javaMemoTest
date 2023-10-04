@@ -10,13 +10,18 @@ public class GuessingGame {
     // Avec la methodologie TDD (test driven design) nous essayons de ne pas écrire plus de code réel que ce dont nous avons absolument besoin pour que le test passe.
     public String guess(int guessedNumber) {
         counter++;  // counte le nbre de tentatives
-        if (counter == 4 && guessedNumber != getRandomNumber()) { // Lesson 102 ** 4 est le nbre d'essais max Game Over
-            return "Vous n'avez pas trouvé le bon chiffre et vous c'est votre 4em essaie. Game over";
-        }
         String trytext = counter == 1 ? "try" : "tries";
         String winningMsg = String.format("Vous avez trouvé le bon chiffre in %d %s", counter, trytext);
-        // return guessedNumber >= 0 ? "Vous avez trouvé le bon chiffre" : "Vous n'avez pas trouvé le bon chiffre"; // methode simple pour que le test testOneWrongNegGuessSituation passe
-        return guessedNumber == getRandomNumber() ? winningMsg : "Vous n'avez pas trouvé le bon chiffre"; // Lesson 99 ** methode simple pour que le test testOneWrongGuessSituation + testOneWrongPosGuessSituation passe | le test 1 ne passe plus car on cherche une égalité sur 2 random number => solution créer 1 field qui va contenir la génération de nobre random
+        String reponse = null; // Lesson 103 ** Eviter d'avoir plusieurs return dans la meme methode => ils les met dans une variable un return à la fin affiche la variable qui répond à la condition
+        if (counter == 4 && guessedNumber != getRandomNumber()) { // Lesson 102 ** 4 est le nbre d'essais max Game Over
+            reponse = String.format("Vous n'avez pas trouvé le bon chiffre et c'est votre %dem %s. Game over", counter, trytext);
+        } else if (counter > 4) {
+            reponse = "Vous n'avez pas trouvé le bon chiffre c'est à 4em tries. Game over"; // Lesson 103
+        } else {
+            // return guessedNumber >= 0 ? "Vous avez trouvé le bon chiffre" : "Vous n'avez pas trouvé le bon chiffre"; // methode simple pour que le test testOneWrongNegGuessSituation passe
+            reponse = guessedNumber == getRandomNumber() ? winningMsg : "Vous n'avez pas trouvé le bon chiffre"; // Lesson 99 ** methode simple pour que le test testOneWrongGuessSituation + testOneWrongPosGuessSituation passe | le test 1 ne passe plus car on cherche une égalité sur 2 random number => solution créer 1 field qui va contenir la génération de nobre random
+        }
+        return reponse;
     }
 
 
