@@ -33,9 +33,26 @@ public class GuessingGame {
         return reponse;
     }
 
-
     public int getRandomNumber() {
         // return new Random().nextInt(10) + 1; // nextInt() => peut prendre en arg une  borne supérieure (bound) ex 10 [0-9] +1 => [1-10]
         return randomNumber;
+    }
+
+    //_____________________Lesson 95 - Reimplementing the Guessing Game User Interface___________________________
+    // our lancer le jeu taper dans le terminal (Alt F12) java -cp target\classes com.tuto.game.GuessingGame aprés avoir build (Ctrl F9)
+    public static void main(String[] args) {
+        GuessingGame game = new GuessingGame(); // Crée une instance de la class
+        boolean loopShouldContinue = true;      // Condition pour que la boucle while continue
+        do { // fait un do while pour que le jeu se lance au moins 1e fois
+        String input = System.console().readLine("Enter a number: ");  // Console demander à user de rentrer un nbre à deviner
+        if ("q".equals(input)) { // Si user tape la lettre q dans la console le jeu s'arrete
+            return;
+        }
+        String output = game.guess(Integer.parseInt(input)); // input user est un String la methode guess() attend en arg un int => parseInt() | dans guess() il y a toute la logique Le nbre random a deviné est une constante de la class et est appelé par le lancement de la methode getRandomNumber() dans des conditions
+        System.out.println(output);  // On print le return de la methode guess() => message pour donner des indications a user
+        if (output.contains("Vous avez trouvé") || output.contains("over")) { // Condition pour que la boucle while s'arréte = le jeu s'arréte
+            loopShouldContinue = false;
+        }
+        } while (loopShouldContinue);
     }
 }
