@@ -1,7 +1,7 @@
 package section8OOP.enumOrdinals111;
 
 /**
- * Section 8 More OOP - Enum Ordinals
+ * Section 8 More OOP - 111 Enum Ordinals
  */
 class Card {
 
